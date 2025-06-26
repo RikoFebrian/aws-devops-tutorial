@@ -33,12 +33,13 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: einaregilsson/beanstalk-deploy@v21
       with:
+        # PASTIKAN SEMUA BARIS DI BAWAH INI ADA DAN INDENTASINYA BENAR
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # <-- PERIKSA BARIS INI DENGAN SEKSAMA
         application_name: WebAppSaya
         environment_name: WebAppSaya-prod-env
-        region: ap-southeast-2
+        region: ap-southeast-2 # Pastikan region Anda benar
         version_label: "prod-${{ github.sha }}"
         deployment_package: deploy.zip
-        use_existing_version_if_available: true # <-- TAMBAHKAN BARIS INI
+        use_existing_version_if_available: true
         
