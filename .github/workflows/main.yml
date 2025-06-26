@@ -39,3 +39,4 @@ jobs:
         region: ap-southeast-2                   # GANTI dengan region AWS Anda
         version_label: ${{ github.sha }}         # Gunakan hash commit sebagai label versi
         deployment_package: deploy.zip           # File zip yang akan di-deploy
+        
