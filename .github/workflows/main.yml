@@ -29,14 +29,16 @@ jobs:
       run: zip -r deploy.zip . -x ".git/*" ".github/*"
 
     # Langkah 4: Deploy ke Elastic Beanstalk
-    - name: Deploy to Elastic Beanstalk
+    - name: Deploy to Production Environment
+      if: github.ref == 'refs/heads/main'
       uses: einaregilsson/beanstalk-deploy@v21
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: WebAppSaya             # GANTI dengan nama aplikasi EB Anda
-        environment_name: WebAppSaya-env       # GANTI dengan nama environment EB Anda
-        region: ap-southeast-2                   # GANTI dengan region AWS Anda
-        version_label: ${{ github.sha }}         # Gunakan hash commit sebagai label versi
-        deployment_package: deploy.zip           # File zip yang akan di-deploy
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: WebAppSaya
+        environment_name: WebAppSaya-prod-env
+        region: ap-southeast-2
+        version_label: "prod-${{ github.sha }}"
+        deployment_package: deploy.zip
+        use_existing_version_if_available: true # <-- TAMBAHKAN BARIS INI
         

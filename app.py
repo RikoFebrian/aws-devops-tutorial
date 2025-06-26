@@ -5,8 +5,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    # Pesan yang akan kita ubah nanti untuk melihat efek CI/CD
-    return "Halo Dunia! Ini adalah versi pertama dari aplikasi DevOps saya di AWS."
+    # Buat variabel untuk menampung pesan dalam format HTML
+    message = f"<h1>Halo Dunia!</h1>"
+    message += f"<p>Ini adalah versi aplikasi yang sudah diperbarui.</p>"
+    message += f"<p>Pipeline CI/CD saya berhasil! ✅</p>"
+    
+    # Kembalikan isi variabel message
+    return message
 
 if __name__ == "__main__":
     # Jalankan aplikasi di port 8080
